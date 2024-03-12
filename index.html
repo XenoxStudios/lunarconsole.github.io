@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LunarConsole</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #1a1a1a; /* Light black */
+            color: #d8d8d8;
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+        }
+        .container {
+            width: 80%;
+            margin: 50px auto;
+        }
+        .console {
+            border: 2px solid #1e1e1e;
+            background-color: #202020;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+        }
+        .console-header {
+            background-color: #1e1e1e;
+            color: #00ff00;
+            padding: 10px 20px;
+            border-top-left-radius: 10px;
+            border-top-right-radius: 10px;
+            border-bottom: 2px solid #1e1e1e;
+        }
+        .console-body {
+            padding: 20px;
+        }
+        .console-prompt {
+            color: #00ff00;
+        }
+        .console-cursor {
+            animation: blink-animation 1s steps(2, start) infinite;
+        }
+        @keyframes blink-animation {
+            to {
+                visibility: hidden;
+            }
+        }
+        nav ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+        }
+        nav ul li {
+            display: inline-block;
+            margin: 0 20px;
+            cursor: pointer;
+        }
+        nav ul li a {
+            color: #d8d8d8;
+            text-decoration: none;
+            font-size: 20px;
+        }
+        nav ul li a:hover {
+            color: #00ff00;
+        }
+        section {
+            margin-top: 50px;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+            color: #d8d8d8;
+        }
+        input[type="text"],
+        input[type="email"],
+        textarea {
+            width: calc(100% - 12px);
+            padding: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #00ff00;
+            background-color: #1a1a1a; /* Light black */
+            color: #d8d8d8;
+            border-radius: 5px;
+        }
+        input[type="submit"] {
+            background-color: #00ff00;
+            color: #000;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            border-radius: 5px;
+        }
+        input[type="submit"]:hover {
+            background-color: #006400;
+        }
+        .form-message {
+            display: block;
+            margin-top: 10px;
+        }
+        .form-success {
+            color: #00ff00;
+            font-weight: bold;
+        }
+        .form-error {
+            color: #ff0000;
+            font-weight: bold;
+        }
+        .form-icon {
+            margin-right: 5px;
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <ul>
+            <li><a href="#themes"><i class="fas fa-paint-brush"></i> Themes</a></li>
+            <li><a href="#licensing"><i class="fas fa-file-alt"></i> Licensing</a></li>
+            <li><a href="#skills"><i class="fas fa-tools"></i> Skills</a></li>
+        </ul>
+    </nav>
+
+    <div id="home" class="container">
+        <div class="console">
+            <div class="console-header">LunarConsole</div>
+            <div class="console-body">
+                <pre><span class="console-prompt">$</span> <span id="command"></span><span class="console-cursor">_</span></pre>
+            </div>
+        </div>
+    </div>
+
+    <section id="themes" class="container">
+        <h2>Themes</h2>
+        <div class="console">
+            <div class="console-body">
+                <pre>Explore different themes to customize your LunarConsole experience.</pre>
+            </div>
+        </div>
+    </section>
+
+    <section id="licensing" class="container">
+        <h2>Licensing</h2>
+        <div class="console">
+            <div class="console-body">
+                <pre>Learn about the licensing options available for LunarConsole.</pre>
+            </div>
+        </div>
+    </section>
+
+    <section id="skills" class="container">
+        <h2>Skills</h2>
+        <div class="console">
+            <div class="console-body">
+                <pre>Discover the skills and expertise of LunarConsole.</pre>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        const form = document.getElementById('contact-form');
+        const formMessage = document.getElementById('form-message');
+
+        form.addEventListener('submit', async (e) => {
+            e.preventDefault();
+
+            const formData = new FormData(form);
+            const response = await fetch(form.action, {
+                method: 'POST',
+                headers: {
+                    'Accept': 'application/json'
+                },
+                body: formData
+            });
+
+            const result = await response.json();
+            if (result.ok) {
+                form.reset();
+                formMessage.textContent = "Message sent successfully!";
+                formMessage.classList.remove('form-error');
+                formMessage.classList.add('form-success');
+            } else {
+                formMessage.textContent = "An error occurred. Please try again later.";
+                formMessage.classList.remove('form-success');
+                formMessage.classList.add('form-error');
+            }
+        });
+    </script>
+</body>
+</html>
