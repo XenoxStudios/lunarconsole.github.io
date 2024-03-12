@@ -24,6 +24,8 @@
             border-radius: 10px;
             padding: 20px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+            overflow: hidden;
+            position: relative;
         }
         .console-header {
             background-color: #1e1e1e;
@@ -58,6 +60,7 @@
             display: inline-block;
             margin: 0 20px;
             cursor: pointer;
+            position: relative;
         }
         nav ul li a {
             color: #d8d8d8;
@@ -66,6 +69,21 @@
         }
         nav ul li a:hover {
             color: #00ff00;
+        }
+        nav ul li .sub-menu {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background-color: #1e1e1e;
+            border-radius: 5px;
+            padding: 10px;
+            z-index: 1;
+            width: 200px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.08);
+        }
+        nav ul li:hover .sub-menu {
+            display: block;
         }
         section {
             margin-top: 50px;
@@ -118,8 +136,22 @@
 <body>
     <nav>
         <ul>
-            <li><a href="#themes"><i class="fas fa-paint-brush"></i> Themes</a></li>
-            <li><a href="#licensing"><i class="fas fa-file-alt"></i> Licensing</a></li>
+            <li>
+                <a href="#themes"><i class="fas fa-paint-brush"></i> Themes</a>
+                <ul class="sub-menu">
+                    <li><a href="#">Theme 1</a></li>
+                    <li><a href="#">Theme 2</a></li>
+                    <li><a href="#">Theme 3</a></li>
+                </ul>
+            </li>
+            <li>
+                <a href="#licensing"><i class="fas fa-file-alt"></i> Licensing</a>
+                <ul class="sub-menu">
+                    <li><a href="#">License 1</a></li>
+                    <li><a href="#">License 2</a></li>
+                    <li><a href="#">License 3</a></li>
+                </ul>
+            </li>
             <li><a href="#skills"><i class="fas fa-tools"></i> Skills</a></li>
         </ul>
     </nav>
@@ -128,7 +160,7 @@
         <div class="console">
             <div class="console-header">LunarConsole</div>
             <div class="console-body">
-                <pre><span class="console-prompt">$</span> <span id="command"></span><span class="console-cursor">_</span></pre>
+                <pre id="console-text"></pre>
             </div>
         </div>
     </div>
@@ -161,33 +193,10 @@
     </section>
 
     <script>
-        const form = document.getElementById('contact-form');
-        const formMessage = document.getElementById('form-message');
-
-        form.addEventListener('submit', async (e) => {
-            e.preventDefault();
-
-            const formData = new FormData(form);
-            const response = await fetch(form.action, {
-                method: 'POST',
-                headers: {
-                    'Accept': 'application/json'
-                },
-                body: formData
-            });
-
-            const result = await response.json();
-            if (result.ok) {
-                form.reset();
-                formMessage.textContent = "Message sent successfully!";
-                formMessage.classList.remove('form-error');
-                formMessage.classList.add('form-success');
-            } else {
-                formMessage.textContent = "An error occurred. Please try again later.";
-                formMessage.classList.remove('form-success');
-                formMessage.classList.add('form-error');
-            }
-        });
-    </script>
-</body>
-</html>
+        const consoleTextElement = document.getElementById('console-text');
+        const textArray = [
+            "Welcome to LunarConsole!",
+            "Explore the latest features.",
+            "Customize your experience with themes.",
+            "Check out our licensing options.",
+            "Discover the skills and expertise of LunarConsole
