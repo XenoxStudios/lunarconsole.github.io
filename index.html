@@ -131,6 +131,18 @@
         .form-icon {
             margin-right: 5px;
         }
+        .skill {
+            margin-bottom: 10px;
+        }
+        .skill-label {
+            margin-bottom: 5px;
+        }
+        .skill-bar {
+            background-color: #00ff00;
+            height: 20px;
+            border-radius: 5px;
+            margin-bottom: 5px;
+        }
     </style>
 </head>
 <body>
@@ -139,9 +151,8 @@
             <li>
                 <a href="#themes"><i class="fas fa-paint-brush"></i> Themes</a>
                 <ul class="sub-menu">
-                    <li><a href="#">Theme 1</a></li>
-                    <li><a href="#">Theme 2</a></li>
-                    <li><a href="#">Theme 3</a></li>
+                    <li><a href="#">Dark Mode</a></li>
+                    <li><a href="#">Light Mode</a></li>
                 </ul>
             </li>
             <li>
@@ -187,7 +198,22 @@
         <h2>Skills</h2>
         <div class="console">
             <div class="console-body">
-                <pre>Discover the skills and expertise of LunarConsole.</pre>
+                <div class="skill">
+                    <label class="skill-label">HTML</label>
+                    <div class="skill-bar" style="width: 80%;"></div>
+                </div>
+                <div class="skill">
+                    <label class="skill-label">CSS</label>
+                    <div class="skill-bar" style="width: 70%;"></div>
+                </div>
+                <div class="skill">
+                    <label class="skill-label">JavaScript</label>
+                    <div class="skill-bar" style="width: 85%;"></div>
+                </div>
+                <div class="skill">
+                    <label class="skill-label">Python</label>
+                    <div class="skill-bar" style="width: 75%;"></div>
+                </div>
             </div>
         </div>
     </section>
@@ -199,4 +225,16 @@
             "Explore the latest features.",
             "Customize your experience with themes.",
             "Check out our licensing options.",
-            "Discover the skills and expertise of LunarConsole
+            "Discover the skills and expertise of LunarConsole."
+        ];
+        let index = 0;
+
+        function updateConsoleText() {
+            consoleTextElement.textContent = textArray[index];
+            index = (index + 1) % textArray.length;
+        }
+
+        setInterval(updateConsoleText, 10000); // Update text every 10 seconds
+    </script>
+</body>
+</html>
