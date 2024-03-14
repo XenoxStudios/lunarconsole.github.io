@@ -13,16 +13,19 @@
             margin: 0;
             padding: 0;
             line-height: 1.6;
-            transition: background-color 0.5s;
+            transition: background-color 0.5s, color 0.5s;
         }
+
         body.light-mode {
             background-color: #f0f0f0; /* Light gray */
             color: #333;
         }
+
         .container {
             width: 80%;
             margin: 50px auto;
         }
+
         .console {
             border: 2px solid #1e1e1e;
             background-color: #202020;
@@ -32,6 +35,7 @@
             overflow: hidden;
             position: relative;
         }
+
         .console-header {
             background-color: #1e1e1e;
             color: #00ff00;
@@ -40,41 +44,41 @@
             border-top-right-radius: 10px;
             border-bottom: 2px solid #1e1e1e;
         }
+
         .console-body {
             padding: 20px;
         }
-        .console-prompt {
-            color: #00ff00;
-        }
-        .console-cursor {
-            animation: blink-animation 1s steps(2, start) infinite;
-        }
-        @keyframes blink-animation {
-            to {
-                visibility: hidden;
-            }
-        }
+
         nav ul {
             list-style-type: none;
             margin: 0;
             padding: 0;
             display: flex;
             justify-content: center;
+            background-color: #202020;
+            border-radius: 10px;
+            padding: 10px 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+            overflow: hidden;
         }
+
         nav ul li {
-            display: inline-block;
             margin: 0 20px;
             cursor: pointer;
             position: relative;
         }
+
         nav ul li a {
             color: #d8d8d8;
             text-decoration: none;
-            font-size: 20px;
+            font-size: 16px;
+            transition: color 0.3s;
         }
+
         nav ul li a:hover {
             color: #00ff00;
         }
+
         nav ul li .sub-menu {
             display: none;
             position: absolute;
@@ -84,20 +88,23 @@
             border-radius: 5px;
             padding: 10px;
             z-index: 1;
-            width: 200px;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.08);
         }
+
         nav ul li:hover .sub-menu {
             display: block;
         }
+
         section {
             margin-top: 50px;
         }
+
         label {
             display: block;
             margin-bottom: 5px;
             color: #d8d8d8;
         }
+
         input[type="text"],
         input[type="email"],
         textarea {
@@ -109,6 +116,7 @@
             color: #d8d8d8;
             border-radius: 5px;
         }
+
         input[type="submit"] {
             background-color: #00ff00;
             color: #000;
@@ -118,35 +126,82 @@
             transition: background-color 0.3s ease;
             border-radius: 5px;
         }
+
         input[type="submit"]:hover {
             background-color: #006400;
         }
+
         .form-message {
             display: block;
             margin-top: 10px;
         }
+
         .form-success {
             color: #00ff00;
             font-weight: bold;
         }
+
         .form-error {
             color: #ff0000;
             font-weight: bold;
         }
-        .form-icon {
-            margin-right: 5px;
-        }
+
         .skill {
             margin-bottom: 10px;
         }
+
         .skill-label {
             margin-bottom: 5px;
         }
+
         .skill-bar {
             background-color: #00ff00;
             height: 20px;
             border-radius: 5px;
             margin-bottom: 5px;
+        }
+
+        /* Additional styles for custom confirmation */
+        #confirmation-modal {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: #1e1e1e;
+            color: #d8d8d8;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+            z-index: 9999;
+        }
+
+        #confirmation-modal p {
+            margin-bottom: 10px;
+        }
+
+        #confirmation-modal input[type="text"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #00ff00;
+            background-color: #1a1a1a; /* Light black */
+            color: #d8d8d8;
+            border-radius: 5px;
+        }
+
+        #confirmation-modal button {
+            background-color: #00ff00;
+            color: #000;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            border-radius: 5px;
+        }
+
+        #confirmation-modal button:hover {
+            background-color: #006400;
         }
     </style>
 </head>
@@ -169,10 +224,11 @@
                 </ul>
             </li>
             <li><a href="#skills"><i class="fas fa-tools"></i> Skills</a></li>
+            <li><a href="#contact"><i class="fas fa-envelope"></i> Contact</a></li>
         </ul>
     </nav>
 
-    <div id="home" class="container">
+    <div class="container">
         <div class="console">
             <div class="console-header">LunarConsole</div>
             <div class="console-body">
@@ -201,24 +257,22 @@
 
     <section id="skills" class="container">
         <h2>Skills</h2>
-        <div class="console">
-            <div class="console-body">
-                <div class="skill">
-                    <label class="skill-label">HTML</label>
-                    <div class="skill-bar" style="width: 80%;"></div>
-                </div>
-                <div class="skill">
-                    <label class="skill-label">CSS</label>
-                    <div class="skill-bar" style="width: 70%;"></div>
-                </div>
-                <div class="skill">
-                    <label class="skill-label">JavaScript</label>
-                    <div class="skill-bar" style="width: 85%;"></div>
-                </div>
-                <div class="skill">
-                    <label class="skill-label">Python</label>
-                    <div class="skill-bar" style="width: 75%;"></div>
-                </div>
+        <div class="console-body">
+            <div class="skill">
+                <label class="skill-label">HTML</label>
+                <div class="skill-bar" style="width: 80%;"></div>
+            </div>
+            <div class="skill">
+                <label class="skill-label">CSS</label>
+                <div class="skill-bar" style="width: 70%;"></div>
+            </div>
+            <div class="skill">
+                <label class="skill-label">JavaScript</label>
+                <div class="skill-bar" style="width: 85%;"></div>
+            </div>
+            <div class="skill">
+                <label class="skill-label">Python</label>
+                <div class="skill-bar" style="width: 75%;"></div>
             </div>
         </div>
     </section>
@@ -227,30 +281,34 @@
         <h2>Contact</h2>
         <div class="console">
             <div class="console-body">
-                <form id="contact-form">
+                <form id="contact-form" method="POST">
                     <label for="name">Name:</label>
                     <input type="text" id="name" name="name" required>
                     <label for="email">Email:</label>
                     <input type="email" id="email" name="email" required>
                     <label for="message">Message:</label>
                     <textarea id="message" name="message" rows="4" required></textarea>
-                    <input type="submit" value="Submit">
+                    <button type="button" onclick="showConfirmationModal()">Send</button>
                 </form>
-                <div id="confirmation" style="display: none;">
-                    <pre id="confirmation-text"></pre>
-                </div>
             </div>
         </div>
     </section>
 
+    <div id="confirmation-modal">
+        <p>Are you sure you want to send the message?</p>
+        <input type="text" id="confirmation-input" placeholder="Type Y to confirm or N to cancel">
+        <button onclick="confirmSend()">Send</button>
+        <button onclick="hideConfirmationModal()">Cancel</button>
+    </div>
+
     <script>
         const consoleTextElement = document.getElementById('console-text');
         const textArray = [
-            "Welcome to LunarConsole!",
-            "Explore the latest features.",
-            "Customize your experience with themes.",
-            "Check out our licensing options.",
-            "Discover the skills and expertise of LunarConsole."
+            "This is my website!",
+            "I hope you enjoy my website.",
+            "Im a developer.",
+            "Please enjoy.",
+            "Im sorry if you find this website bad."
         ];
         let index = 0;
 
@@ -261,36 +319,36 @@
 
         setInterval(updateConsoleText, 10000); // Update text every 10 seconds
 
+        // Dark mode / Light mode functionality
         function toggleDarkMode() {
-            document.body.classList.add('dark-mode');
             document.body.classList.remove('light-mode');
         }
 
         function toggleLightMode() {
             document.body.classList.add('light-mode');
-            document.body.classList.remove('dark-mode');
         }
 
-        const contactForm = document.getElementById('contact-form');
-        const confirmationText = document.getElementById('confirmation-text');
-        contactForm.addEventListener('submit', function(event) {
-            event.preventDefault();
-            const formData = new FormData(contactForm);
-            const name = formData.get('name');
-            const email = formData.get('email');
-            const message = formData.get('message');
-            const confirmationMessage = `Name: ${name}\nEmail: ${email}\nMessage: ${message}\n\nAre you sure you want to send? (Y/N)`;
-            const confirmSend = confirm(confirmationMessage);
-            if (confirmSend) {
-                confirmationText.textContent = 'Message sent successfully!';
-                confirmationText.style.color = '#00ff00';
-                contactForm.reset();
+        // Custom confirmation modal for contact form
+        function showConfirmationModal() {
+            document.getElementById('confirmation-modal').style.display = 'block';
+        }
+
+        function hideConfirmationModal() {
+            document.getElementById('confirmation-modal').style.display = 'none';
+        }
+
+        function confirmSend() {
+            var confirmationInput = document.getElementById('confirmation-input').value.trim().toLowerCase();
+            if (confirmationInput === 'y') {
+                // Send the form
+                document.getElementById('contact-form').submit();
+            } else if (confirmationInput === 'n') {
+                // Do nothing, just hide the modal
+                hideConfirmationModal();
             } else {
-                confirmationText.textContent = 'Message not sent.';
-                confirmationText.style.color = '#ff0000';
+                alert('Please type Y to confirm or N to cancel.');
             }
-            document.getElementById('confirmation').style.display = 'block';
-        });
+        }
     </script>
 </body>
 </html>
