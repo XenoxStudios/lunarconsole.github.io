@@ -11,7 +11,7 @@
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             background-color: #1a1a1a; /* Light black */
-            color: #000; /* Black text */
+            color: #fff; /* White text */
             margin: 0;
             padding: 0;
             line-height: 1.6;
@@ -71,7 +71,7 @@
         }
 
         nav ul li a {
-            color: #000; /* Black text */
+            color: #fff; /* White text */
             text-decoration: none;
             font-size: 16px;
             transition: color 0.3s;
@@ -84,7 +84,7 @@
         nav ul li .sub-menu {
             display: none;
             position: absolute;
-            top: 100%;
+            top: calc(100% + 5px);
             left: 0;
             background-color: #1e1e1e;
             border-radius: 5px;
@@ -104,7 +104,7 @@
         label {
             display: block;
             margin-bottom: 5px;
-            color: #000; /* Black text */
+            color: #fff; /* White text */
         }
 
         input[type="text"],
@@ -115,7 +115,7 @@
             margin-bottom: 20px;
             border: 1px solid #00ff00; /* Green border */
             background-color: #1a1a1a; /* Light black */
-            color: #000; /* Black text */
+            color: #fff; /* White text */
             border-radius: 5px;
         }
 
@@ -154,7 +154,6 @@
 
         .skill-label {
             margin-bottom: 5px;
-            font-weight: bold; /* Bold text */
         }
 
         .skill-bar {
@@ -170,7 +169,7 @@
             left: 5px; /* Align percentage text at the start of the bar */
             top: 50%;
             transform: translateY(-50%);
-            color: #000; /* Black text */
+            color: #00ff00; /* Green text */
             font-weight: bold; /* Bold text */
             font-size: 14px;
         }
@@ -223,35 +222,35 @@
     <nav>
         <ul>
             <li>
-                <a href="#themes"><i class="fas fa-paint-brush"></i> Themes</a>
+                <a href="#">Themes <i class="fas fa-angle-down"></i></a>
                 <ul class="sub-menu">
-                    <li><a href="#" onclick="toggleDarkMode()">Dark Mode</a></li>
-                    <li><a href="#" onclick="toggleLightMode()">Light Mode</a></li>
+                    <li><a href="#">Dark Mode</a></li>
+                    <li><a href="#">Light Mode</a></li>
                 </ul>
             </li>
             <li>
-                <a href="#licensing"><i class="fas fa-file-alt"></i> Licensing</a>
+                <a href="#">Licensing <i class="fas fa-angle-down"></i></a>
                 <ul class="sub-menu">
                     <li><a href="#">License 1</a></li>
                     <li><a href="#">License 2</a></li>
                     <li><a href="#">License 3</a></li>
                 </ul>
             </li>
-            <li><a href="#skills"><i class="fas fa-tools"></i> Skills</a></li>
-            <li><a href="#contact"><i class="fas fa-envelope"></i> Contact</a></li>
+            <li><a href="#">Skills</a></li>
+            <li><a href="#">Contact</a></li>
         </ul>
     </nav>
 
     <div class="container">
         <div class="console">
-            <div class="console-header">LunarConsole</div>
+            <div class="console-header">Hi im LunarConsole!</div>
             <div class="console-body">
                 <pre id="console-text"></pre>
             </div>
         </div>
     </div>
 
-    <section id="themes" class="container">
+    <section class="container">
         <h2>Themes</h2>
         <div class="console">
             <div class="console-body">
@@ -260,7 +259,7 @@
         </div>
     </section>
 
-    <section id="licensing" class="container">
+    <section class="container">
         <h2>Licensing</h2>
         <div class="console">
             <div class="console-body">
@@ -269,7 +268,7 @@
         </div>
     </section>
 
-    <section id="skills" class="container">
+    <section class="container">
         <h2>Skills</h2>
         <div class="console-body">
             <div class="skill">
@@ -295,7 +294,7 @@
         </div>
     </section>
 
-    <section id="contact" class="container">
+    <section class="container">
         <h2>Contact</h2>
         <div class="console">
             <div class="console-body">
@@ -327,9 +326,9 @@
         const textArray = [
             "This is my website!",
             "I hope you enjoy my website.",
-            "Im a developer.",
+            "I'm a developer.",
             "Please enjoy.",
-            "Im sorry if you find this website bad."
+            "I'm sorry if you find this website bad."
         ];
         let index = 0;
 
