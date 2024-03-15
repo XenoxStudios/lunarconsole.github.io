@@ -9,11 +9,10 @@
             font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
             margin: 0;
             padding: 0;
-            background-image: url('background.jpg'); /* Change 'background.jpg' to the path of your custom picture */
+            background-image: url('background.jpg'); /* Replace 'background.jpg' with your custom background image */
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
-            background-attachment: fixed;
         }
         .search-container {
             position: absolute;
@@ -21,47 +20,37 @@
             left: 50%;
             transform: translate(-50%, -50%);
             text-align: center;
-            padding: 20px;
         }
         .search-bar {
-            margin-top: 20px;
-            margin-bottom: 20px;
-            padding: 15px;
+            padding: 20px;
             border: 1px solid #ccc;
-            border-radius: 5px;
-            width: 70%;
+            border-radius: 50px;
+            width: calc(100% - 40px);
             max-width: 600px;
             box-sizing: border-box;
             font-size: 24px;
-            background-color: rgba(255, 255, 255, 0.8); /* Transparent white background */
+            outline: none;
+            background-color: rgba(255, 255, 255, 0.8);
+            transition: all 0.3s ease;
         }
-        .search-button {
-            padding: 15px 30px;
-            background-color: #0078D4;
-            color: #fff;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            transition: background-color 0.3s ease;
-            font-size: 20px;
+        .search-bar::placeholder {
+            color: #888;
         }
-        .search-button:hover {
-            background-color: #005a9e;
+        .search-bar:focus {
+            background-color: #fff;
         }
         .shortcut-container {
-            position: fixed;
-            bottom: 0;
-            left: 0;
-            width: 100%;
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
             text-align: center;
-            padding: 20px;
-            background-color: rgba(255, 255, 255, 0.8); /* Transparent white background */
         }
         .shortcut {
             display: inline-block;
             margin: 10px;
             padding: 10px;
-            background-color: #f8f8f8;
+            background-color: rgba(255, 255, 255, 0.8);
             border-radius: 10px;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
             text-decoration: none;
@@ -69,7 +58,7 @@
             transition: all 0.3s ease;
         }
         .shortcut:hover {
-            background-color: #f0f0f0;
+            background-color: rgba(255, 255, 255, 1);
         }
         .shortcut img {
             width: 32px;
@@ -80,9 +69,7 @@
 </head>
 <body>
     <div class="search-container">
-        <input type="text" id="searchInput" class="search-bar" placeholder="Search the web...">
-        <br><br>
-        <button onclick="searchGoogle()" class="search-button">Search</button>
+        <input type="text" id="searchInput" class="search-bar" placeholder="Search the web..." onkeydown="if (event.keyCode === 13) searchGoogle()">
     </div>
 
     <div class="shortcut-container">
