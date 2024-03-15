@@ -150,10 +150,12 @@
 
         .skill {
             margin-bottom: 10px;
+            position: relative;
         }
 
         .skill-label {
             margin-bottom: 5px;
+            color: #fff; /* White text */
         }
 
         .skill-bar {
@@ -169,7 +171,7 @@
             left: 5px; /* Align percentage text at the start of the bar */
             top: 50%;
             transform: translateY(-50%);
-            color: #00ff00; /* Green text */
+            color: #000; /* Black text */
             font-weight: bold; /* Bold text */
             font-size: 14px;
         }
@@ -243,7 +245,7 @@
 
     <div class="container">
         <div class="console">
-            <div class="console-header">Hi im LunarConsole!</div>
+            <div class="console-header">LunarConsole</div>
             <div class="console-body">
                 <pre id="console-text"></pre>
             </div>
@@ -251,45 +253,31 @@
     </div>
 
     <section class="container">
-        <h2>Themes</h2>
-        <div class="console">
-            <div class="console-body">
-                <pre>Explore different themes to customize your LunarConsole experience.</pre>
-            </div>
-        </div>
-    </section>
-
-    <section class="container">
-        <h2>Licensing</h2>
-        <div class="console">
-            <div class="console-body">
-                <pre>Learn about the licensing options available for LunarConsole.</pre>
-            </div>
-        </div>
-    </section>
-
-    <section class="container">
         <h2>Skills</h2>
         <div class="console-body">
             <div class="skill">
                 <label class="skill-label">HTML</label>
-                <div class="skill-percent">80%</div>
-                <div class="skill-bar" style="width: 80%;"></div>
+                <div class="skill-bar" style="width: 80%;">
+                    <div class="skill-percent">80%</div>
+                </div>
             </div>
             <div class="skill">
                 <label class="skill-label">CSS</label>
-                <div class="skill-percent">70%</div>
-                <div class="skill-bar" style="width: 70%;"></div>
+                <div class="skill-bar" style="width: 70%;">
+                    <div class="skill-percent">70%</div>
+                </div>
             </div>
             <div class="skill">
                 <label class="skill-label">JavaScript</label>
-                <div class="skill-percent">85%</div>
-                <div class="skill-bar" style="width: 85%;"></div>
+                <div class="skill-bar" style="width: 85%;">
+                    <div class="skill-percent">85%</div>
+                </div>
             </div>
             <div class="skill">
                 <label class="skill-label">Python</label>
-                <div class="skill-percent">75%</div>
-                <div class="skill-bar" style="width: 75%;"></div>
+                <div class="skill-bar" style="width: 75%;">
+                    <div class="skill-percent">75%</div>
+                </div>
             </div>
         </div>
     </section>
