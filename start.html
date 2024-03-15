@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Start Page</title>
-    <script src="https://cdn.embedly.com/widgets/platform.js" charset="UTF-8"></script>
     <style>
         body {
             font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
@@ -49,10 +48,11 @@
         }
         .shortcut-container {
             margin-top: 20px;
-            text-align: center;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
         }
         .shortcut {
-            display: inline-block;
             margin: 10px;
             padding: 10px;
             background-color: rgba(255, 255, 255, 0.8);
@@ -70,6 +70,30 @@
             width: 32px;
             height: 32px;
             margin-bottom: 10px;
+        }
+        .embed-container {
+            margin-top: 20px;
+            max-width: 600px;
+            width: 80%;
+            border: 1px solid #ccc;
+            padding: 20px;
+            border-radius: 10px;
+            background-color: #fff;
+        }
+        .embed-image {
+            max-width: 100%;
+            border-radius: 10px;
+            margin-bottom: 20px;
+        }
+        .embed-title {
+            font-size: 24px;
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 10px;
+        }
+        .embed-description {
+            font-size: 18px;
+            color: #666;
         }
     </style>
 </head>
@@ -91,6 +115,12 @@
         <a href="https://www.spotify.com" class="shortcut" target="_blank">
             <img src="https://www.spotify.com/favicon.ico" alt="Spotify Favicon">
         </a>
+    </div>
+
+    <div class="embed-container">
+        <img src="embed-image.jpg" class="embed-image" alt="Embed Image"> <!-- Replace with your embed image -->
+        <div class="embed-title">Custom Start Page</div> <!-- Replace with your title -->
+        <div class="embed-description">This is a custom start page for your browser. It provides quick access to your favorite websites and a search bar.</div> <!-- Replace with your description -->
     </div>
 
     <script>
