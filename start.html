@@ -6,29 +6,26 @@
     <title>Start Page</title>
     <style>
         body {
-            font-family: Arial, sans-serif;
+            font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
             margin: 0;
             padding: 0;
-            background-color: #1a1a1a;
-            color: #fff;
-            transition: background-color 0.3s ease;
+            background-color: #f8f8f8;
         }
         .container {
-            max-width: 600px;
+            max-width: 800px;
             margin: 50px auto;
             text-align: center;
             padding: 20px;
-            background-color: #333;
+            background-color: #fff;
             border-radius: 10px;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            border-top: 10px solid #0078D4;
         }
         .shortcut {
-            display: flex;
-            align-items: center;
-            justify-content: flex-start;
+            display: inline-block;
             margin: 10px;
             padding: 20px;
-            background-color: #444;
+            background-color: #0078D4;
             border-radius: 10px;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
             text-decoration: none;
@@ -36,25 +33,26 @@
             transition: all 0.3s ease;
         }
         .shortcut:hover {
-            background-color: #555;
+            background-color: #005a9e;
         }
         .shortcut img {
-            width: 20px;
-            height: 20px;
-            margin-right: 10px;
+            width: 32px;
+            height: 32px;
+            margin-bottom: 10px;
         }
         .search-bar {
             margin-top: 20px;
+            margin-bottom: 20px;
             padding: 10px;
             border: 1px solid #ccc;
             border-radius: 5px;
-            width: 70%;
-            max-width: 400px;
+            width: calc(100% - 40px);
+            max-width: 600px;
             box-sizing: border-box;
         }
         .search-button {
             padding: 10px 20px;
-            background-color: #007bff;
+            background-color: #0078D4;
             color: #fff;
             border: none;
             border-radius: 5px;
@@ -62,64 +60,21 @@
             transition: background-color 0.3s ease;
         }
         .search-button:hover {
-            background-color: #0056b3;
+            background-color: #005a9e;
         }
-        .toggle-container {
-            margin-top: 20px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-        .toggle-label {
-            margin-right: 10px;
-            cursor: pointer;
-            font-size: 20px;
-        }
-        .toggle-switch {
-            position: relative;
-            display: inline-block;
-            width: 60px;
-            height: 34px;
-        }
-        .toggle-slider {
-            position: absolute;
-            cursor: pointer;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background-color: #ccc;
-            border-radius: 34px;
-            transition: .4s;
-        }
-        .toggle-slider:before {
-            position: absolute;
-            content: "🌞";
-            font-size: 18px;
-            top: 4px;
-            left: 4px;
-            transition: .4s;
-        }
-        input:checked + .toggle-slider {
-            background-color: #007bff;
-        }
-        input:checked + .toggle-slider:before {
-            content: "🌜";
-            left: calc(100% - 24px);
-        }
-        .toggle-switch input {
-            display: none;
+        .title {
+            font-size: 28px;
+            font-weight: bold;
+            margin-bottom: 20px;
+            color: #0078D4;
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <input type="checkbox" id="toggle" class="toggle-switch" onclick="toggleMode()" checked>
-        <label for="toggle" class="toggle-label">🌞</label>
-        <div class="toggle-container">
-            <input type="text" id="searchInput" class="search-bar" placeholder="Search the web...">
-            <button onclick="searchGoogle()" class="search-button">Search</button>
-        </div>
+        <div class="title">Start Page</div>
+        <input type="text" id="searchInput" class="search-bar" placeholder="Search the web...">
+        <button onclick="searchGoogle()" class="search-button">Search</button>
         <br><br>
         <a href="https://github.com" class="shortcut" target="_blank">
             <img src="https://github.com/favicon.ico" alt="GitHub Favicon">
@@ -145,11 +100,6 @@
             if (query.trim() !== "") {
                 window.open("https://www.google.com/search?q=" + encodeURIComponent(query), "_blank");
             }
-        }
-
-        function toggleMode() {
-            var body = document.body;
-            body.classList.toggle("dark-mode");
         }
     </script>
 </body>
