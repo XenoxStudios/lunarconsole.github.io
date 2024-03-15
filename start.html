@@ -9,26 +9,40 @@
             font-family: Arial, sans-serif;
             margin: 0;
             padding: 0;
-            background-color: #f3f3f3;
+            background-color: #2b2b2b;
+            color: #fff;
+            transition: background-color 0.3s ease, color 0.3s ease;
         }
         .container {
             max-width: 600px;
             margin: 50px auto;
             text-align: center;
+            padding: 20px;
+            background-color: #333;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
         }
         .shortcut {
             display: inline-block;
             margin: 10px;
             padding: 20px;
-            background-color: #fff;
+            background-color: #333;
             border-radius: 10px;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
             text-decoration: none;
-            color: #333;
+            color: #fff;
             transition: all 0.3s ease;
+            position: relative;
         }
         .shortcut:hover {
-            background-color: #f0f0f0;
+            background-color: #444;
+        }
+        .shortcut img {
+            width: 16px;
+            height: 16px;
+            position: absolute;
+            left: 8px;
+            top: 8px;
         }
         .search-bar {
             margin-top: 20px;
@@ -51,17 +65,79 @@
         .search-button:hover {
             background-color: #0056b3;
         }
+        .toggle-container {
+            margin-top: 20px;
+            display: flex;
+            justify-content: center;
+        }
+        .toggle-label {
+            margin-right: 10px;
+            cursor: pointer;
+        }
+        .toggle-switch {
+            position: relative;
+            display: inline-block;
+            width: 60px;
+            height: 34px;
+        }
+        .toggle-slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: #ccc;
+            border-radius: 34px;
+            transition: .4s;
+        }
+        .toggle-slider:before {
+            position: absolute;
+            content: "";
+            height: 26px;
+            width: 26px;
+            left: 4px;
+            bottom: 4px;
+            background-color: white;
+            border-radius: 50%;
+            transition: .4s;
+        }
+        input:checked + .toggle-slider {
+            background-color: #007bff;
+        }
+        input:checked + .toggle-slider:before {
+            transform: translateX(26px);
+        }
+        .toggle-switch input {
+            display: none;
+        }
     </style>
 </head>
 <body>
     <div class="container">
-        <input type="text" id="searchInput" class="search-bar" placeholder="Search the web...">
-        <button onclick="searchGoogle()" class="search-button">Search</button>
+        <input type="checkbox" id="toggle" class="toggle-switch" onclick="toggleMode()" checked>
+        <label for="toggle" class="toggle-label">Dark Mode</label>
+        <div class="toggle-container">
+            <input type="text" id="searchInput" class="search-bar" placeholder="Search the web...">
+            <button onclick="searchGoogle()" class="search-button">Search</button>
+        </div>
         <br><br>
-        <a href="https://github.com" class="shortcut" target="_blank">GitHub</a>
-        <a href="https://www.cloudflare.com" class="shortcut" target="_blank">Cloudflare</a>
-        <a href="https://www.openai.com/chatgpt" class="shortcut" target="_blank">ChatGPT</a>
-        <a href="https://www.spotify.com" class="shortcut" target="_blank">Spotify</a>
+        <a href="https://github.com" class="shortcut" target="_blank">
+            <img src="https://github.com/favicon.ico" alt="GitHub Favicon">
+            GitHub
+        </a>
+        <a href="https://www.cloudflare.com" class="shortcut" target="_blank">
+            <img src="https://www.cloudflare.com/favicon.ico" alt="Cloudflare Favicon">
+            Cloudflare
+        </a>
+        <a href="https://www.openai.com/chatgpt" class="shortcut" target="_blank">
+            <img src="https://www.openai.com/favicon.ico" alt="OpenAI Favicon">
+            ChatGPT
+        </a>
+        <a href="https://www.spotify.com" class="shortcut" target="_blank">
+            <img src="https://www.spotify.com/favicon.ico" alt="Spotify Favicon">
+            Spotify
+        </a>
     </div>
 
     <script>
@@ -70,6 +146,11 @@
             if (query.trim() !== "") {
                 window.open("https://www.google.com/search?q=" + encodeURIComponent(query), "_blank");
             }
+        }
+
+        function toggleMode() {
+            var body = document.body;
+            body.classList.toggle("dark-mode");
         }
     </script>
 </body>
