@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Start Page</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f3f3f3;
+        }
+        .container {
+            max-width: 600px;
+            margin: 50px auto;
+            text-align: center;
+        }
+        .shortcut {
+            display: inline-block;
+            margin: 10px;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            text-decoration: none;
+            color: #333;
+            transition: all 0.3s ease;
+        }
+        .shortcut:hover {
+            background-color: #f0f0f0;
+        }
+        .search-bar {
+            margin-top: 20px;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            width: 70%;
+            max-width: 400px;
+            box-sizing: border-box;
+        }
+        .search-button {
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        .search-button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <input type="text" id="searchInput" class="search-bar" placeholder="Search the web...">
+        <button onclick="searchGoogle()" class="search-button">Search</button>
+        <br><br>
+        <a href="https://github.com" class="shortcut" target="_blank">GitHub</a>
+        <a href="https://www.cloudflare.com" class="shortcut" target="_blank">Cloudflare</a>
+        <a href="https://www.openai.com/chatgpt" class="shortcut" target="_blank">ChatGPT</a>
+        <a href="https://www.spotify.com" class="shortcut" target="_blank">Spotify</a>
+    </div>
+
+    <script>
+        function searchGoogle() {
+            var query = document.getElementById("searchInput").value;
+            if (query.trim() !== "") {
+                window.open("https://www.google.com/search?q=" + encodeURIComponent(query), "_blank");
+            }
+        }
+    </script>
+</body>
+</html>
