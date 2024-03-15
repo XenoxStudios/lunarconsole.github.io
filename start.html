@@ -71,35 +71,35 @@
             height: 32px;
             margin-bottom: 10px;
         }
-        .embed-container {
-            margin-top: 20px;
-            max-width: 600px;
-            width: 80%;
-            border: 1px solid #ccc;
-            padding: 20px;
-            border-radius: 10px;
+        .dropdown {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+        }
+        .dropdown-select {
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
             background-color: #fff;
+            font-size: 16px;
+            cursor: pointer;
         }
-        .embed-image {
-            max-width: 100%;
-            border-radius: 10px;
-            margin-bottom: 20px;
+        .dropdown-select:focus {
+            outline: none;
         }
-        .embed-title {
-            font-size: 24px;
-            font-weight: bold;
-            color: #333;
-            margin-bottom: 10px;
+        .dropdown-option {
+            padding: 10px;
+            font-size: 16px;
+            cursor: pointer;
         }
-        .embed-description {
-            font-size: 18px;
-            color: #666;
+        .dropdown-option:hover {
+            background-color: rgba(0, 0, 0, 0.1);
         }
     </style>
 </head>
 <body>
     <div class="content">
-        <input type="text" id="searchInput" class="search-bar" placeholder="Search the web..." onkeydown="if (event.keyCode === 13) searchGoogle()">
+        <input type="text" id="searchInput" class="search-bar" placeholder="Search the web..." onkeydown="if (event.keyCode === 13) search()">
     </div>
 
     <div class="shortcut-container">
@@ -117,18 +117,26 @@
         </a>
     </div>
 
-    <div class="embed-container">
-        <img src="embed-image.jpg" class="embed-image" alt="Embed Image"> <!-- Replace with your embed image -->
-        <div class="embed-title">Custom Start Page</div> <!-- Replace with your title -->
-        <div class="embed-description">This is a custom start page for your browser. It provides quick access to your favorite websites and a search bar.</div> <!-- Replace with your description -->
+    <div class="dropdown">
+        <select class="dropdown-select" id="searchEngine" onchange="changeSearchEngine()">
+            <option value="https://www.google.com/search?q=" selected>Google</option>
+            <option value="https://www.bing.com/search?q=">Bing</option>
+            <option value="https://duckduckgo.com/?q=">DuckDuckGo</option>
+        </select>
     </div>
 
     <script>
-        function searchGoogle() {
+        function search() {
             var query = document.getElementById("searchInput").value;
             if (query.trim() !== "") {
-                window.open("https://www.google.com/search?q=" + encodeURIComponent(query), "_blank");
+                var selectedEngine = document.getElementById("searchEngine").value;
+                window.open(selectedEngine + encodeURIComponent(query), "_blank");
             }
+        }
+
+        function changeSearchEngine() {
+            var selectedEngine = document.getElementById("searchEngine").value;
+            // You can customize this function to perform additional actions when changing search engines
         }
     </script>
 </body>
