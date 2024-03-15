@@ -9,7 +9,7 @@
             font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
             margin: 0;
             padding: 0;
-            background-image: url('bg.jpg'); /* Replace 'background.jpg' with your custom background image */
+            background-image: url('gb.jpg'); /* Replace 'background.jpg' with your custom background image */
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
@@ -18,7 +18,6 @@
             align-items: center;
             justify-content: center;
             min-height: 100vh;
-            position: relative;
         }
         .content {
             position: relative;
@@ -75,6 +74,7 @@
             border-radius: 50%;
             overflow: hidden;
             cursor: pointer;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
         }
         .search-engine-switcher:hover .search-engine-name {
             display: block;
@@ -97,22 +97,24 @@
             z-index: 1;
         }
         .custom-menu {
+            display: none;
             position: absolute;
-            width: 150px;
-            background: #f9f9f9;
-            padding: 10px;
+            background-color: #fff;
             border-radius: 10px;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            display: none;
+            padding: 10px 20px;
+            z-index: 1;
         }
-        .custom-menu-option {
-            padding: 8px 15px;
-            font-size: 16px;
+        .search-engine-switcher:hover .custom-menu {
+            display: block;
+        }
+        .menu-item {
+            padding: 8px 0;
             cursor: pointer;
             transition: background-color 0.3s ease;
         }
-        .custom-menu-option:hover {
-            background-color: #ddd;
+        .menu-item:hover {
+            background-color: rgba(0, 0, 0, 0.1);
         }
     </style>
 </head>
@@ -136,32 +138,22 @@
         </a>
     </div>
 
-    <div class="search-engine-switcher" onclick="switchSearchEngine()">
+    <div class="search-engine-switcher" oncontextmenu="showCustomMenu(event)">
         <img class="search-engine-logo" src="https://www.google.com/favicon.ico" alt="Google Logo">
         <span class="search-engine-name">Google</span>
-    </div>
-
-    <div class="custom-menu" id="customMenu">
-        <div class="custom-menu-option" onclick="noOptions()">No options</div>
+        <div class="custom-menu">
+            <div class="menu-item" onclick="copyText()">Copy</div>
+            <div class="menu-item" onclick="pasteText()">Paste</div>
+        </div>
     </div>
 
     <script>
-        window.addEventListener('contextmenu', function (e) {
-            e.preventDefault();
-            var customMenu = document.getElementById('customMenu');
-            customMenu.style.left = e.pageX + 'px';
-            customMenu.style.top = e.pageY + 'px';
-            customMenu.style.display = 'block';
-        });
-
-        window.addEventListener('click', function () {
-            var customMenu = document.getElementById('customMenu');
-            customMenu.style.display = 'none';
-        });
-
-        function noOptions() {
-            alert("No options");
-        }
+        const searchEngines = [
+            { name: "Google", logo: "https://www.google.com/favicon.ico" },
+            { name: "Bing", logo: "https://www.bing.com/favicon.ico" },
+            { name: "DuckDuckGo", logo: "https://duckduckgo.com/favicon.ico" }
+        ];
+        let currentSearchEngineIndex = 0;
 
         function search() {
             var query = document.getElementById("searchInput").value;
@@ -176,6 +168,35 @@
             document.querySelector('.search-engine-logo').src = searchEngines[currentSearchEngineIndex].logo;
             document.querySelector('.search-engine-name').innerText = searchEngines[currentSearchEngineIndex].name;
         }
+
+        function showCustomMenu(event) {
+            event.preventDefault();
+            const menu = document.querySelector('.custom-menu');
+            menu.style.top = `${event.clientY}px`;
+            menu.style.left = `${event.clientX}px`;
+            menu.style.display = 'block';
+        }
+
+        function copyText() {
+            document.execCommand("copy");
+            hideCustomMenu();
+        }
+
+        function pasteText() {
+            document.execCommand("paste");
+            hideCustomMenu();
+        }
+
+        function hideCustomMenu() {
+            const menu = document.querySelector('.custom-menu');
+            menu.style.display = 'none';
+        }
+
+        document.addEventListener("click", function(event) {
+            if (!event.target.closest('.search-engine-switcher')) {
+                hideCustomMenu();
+            }
+        });
     </script>
 </body>
 </html>
