@@ -13,25 +13,37 @@
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            filter: blur(5px); /* Background blur effect */
+            overflow: hidden; /* Prevents background overflow */
+        }
+        .container {
+            position: relative;
+            z-index: 1; /* Ensure content is above the blurred background */
         }
         .search-container {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
             text-align: center;
+            margin-bottom: 20px;
+            animation: fadeInDown 1s ease forwards; /* Fade in animation */
         }
         .search-bar {
             padding: 20px;
-            border: 1px solid #ccc;
+            border: none;
             border-radius: 50px;
-            width: calc(100% - 40px);
+            width: 80%;
             max-width: 600px;
             box-sizing: border-box;
             font-size: 24px;
             outline: none;
             background-color: rgba(255, 255, 255, 0.8);
             transition: all 0.3s ease;
+            display: block;
+            margin: 0 auto;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3); /* Shadow effect */
         }
         .search-bar::placeholder {
             color: #888;
@@ -40,11 +52,10 @@
             background-color: #fff;
         }
         .shortcut-container {
-            position: absolute;
-            bottom: 20px;
-            left: 50%;
-            transform: translateX(-50%);
             text-align: center;
+            display: flex;
+            justify-content: center;
+            animation: fadeInUp 1s ease forwards; /* Fade in animation */
         }
         .shortcut {
             display: inline-block;
@@ -52,10 +63,13 @@
             padding: 10px;
             background-color: rgba(255, 255, 255, 0.8);
             border-radius: 10px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
             text-decoration: none;
             color: #333;
             transition: all 0.3s ease;
+            transform: translateY(20px); /* Initial position */
+            opacity: 0; /* Initially hidden */
+            animation: fadeIn 1s ease forwards; /* Fade in animation */
         }
         .shortcut:hover {
             background-color: rgba(255, 255, 255, 1);
@@ -65,26 +79,66 @@
             height: 32px;
             margin-bottom: 10px;
         }
+        .title {
+            font-size: 36px;
+            font-weight: bold;
+            color: #fff;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+            animation: fadeIn 1s ease forwards; /* Fade in animation */
+        }
+        /* Animation keyframes */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
     </style>
 </head>
 <body>
-    <div class="search-container">
-        <input type="text" id="searchInput" class="search-bar" placeholder="Search the web..." onkeydown="if (event.keyCode === 13) searchGoogle()">
-    </div>
+    <div class="container">
+        <div class="title">Start Page</div>
+        <div class="search-container">
+            <input type="text" id="searchInput" class="search-bar" placeholder="Search the web..." onkeydown="if (event.keyCode === 13) searchGoogle()">
+        </div>
 
-    <div class="shortcut-container">
-        <a href="https://github.com" class="shortcut" target="_blank">
-            <img src="https://github.com/favicon.ico" alt="GitHub Favicon">
-        </a>
-        <a href="https://www.cloudflare.com" class="shortcut" target="_blank">
-            <img src="https://www.cloudflare.com/favicon.ico" alt="Cloudflare Favicon">
-        </a>
-        <a href="https://www.openai.com/chatgpt" class="shortcut" target="_blank">
-            <img src="https://www.openai.com/favicon.ico" alt="OpenAI Favicon">
-        </a>
-        <a href="https://www.spotify.com" class="shortcut" target="_blank">
-            <img src="https://www.spotify.com/favicon.ico" alt="Spotify Favicon">
-        </a>
+        <div class="shortcut-container">
+            <a href="https://github.com" class="shortcut" target="_blank">
+                <img src="https://github.com/favicon.ico" alt="GitHub Favicon">
+            </a>
+            <a href="https://www.cloudflare.com" class="shortcut" target="_blank">
+                <img src="https://www.cloudflare.com/favicon.ico" alt="Cloudflare Favicon">
+            </a>
+            <a href="https://www.openai.com/chatgpt" class="shortcut" target="_blank">
+                <img src="https://www.openai.com/favicon.ico" alt="OpenAI Favicon">
+            </a>
+            <a href="https://www.spotify.com" class="shortcut" target="_blank">
+                <img src="https://www.spotify.com/favicon.ico" alt="Spotify Favicon">
+            </a>
+        </div>
     </div>
 
     <script>
