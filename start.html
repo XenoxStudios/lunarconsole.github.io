@@ -54,46 +54,46 @@
         }
         .shortcut {
             margin: 10px;
-            padding: 10px;
-            background-color: rgba(255, 255, 255, 0.8);
-            border-radius: 10px;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            overflow: hidden;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            text-decoration: none;
-            color: #333;
-            transition: all 0.3s ease;
-            filter: drop-shadow(0 0 5px rgba(255, 255, 255, 0.7));
-        }
-        .shortcut:hover {
-            background-color: rgba(255, 255, 255, 1);
         }
         .shortcut img {
-            width: 32px;
-            height: 32px;
-            margin-bottom: 10px;
+            width: 100%;
+            height: auto;
+            display: block;
         }
-        .dropdown {
+        .search-engine-switcher {
             position: absolute;
             top: 20px;
             right: 20px;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            overflow: hidden;
+            cursor: pointer;
         }
-        .dropdown-select {
-            padding: 10px;
-            border: none;
+        .search-engine-switcher:hover .search-engine-name {
+            display: block;
+        }
+        .search-engine-logo {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+        .search-engine-name {
+            display: none;
+            position: absolute;
+            top: 60px;
+            right: 50%;
+            transform: translateX(50%);
+            background-color: rgba(255, 255, 255, 0.8);
+            padding: 5px 10px;
             border-radius: 5px;
-            background-color: #fff;
-            font-size: 16px;
-            cursor: pointer;
-        }
-        .dropdown-select:focus {
-            outline: none;
-        }
-        .dropdown-option {
-            padding: 10px;
-            font-size: 16px;
-            cursor: pointer;
-        }
-        .dropdown-option:hover {
-            background-color: rgba(0, 0, 0, 0.1);
+            font-size: 14px;
+            z-index: 1;
         }
     </style>
 </head>
@@ -117,26 +117,31 @@
         </a>
     </div>
 
-    <div class="dropdown">
-        <select class="dropdown-select" id="searchEngine" onchange="changeSearchEngine()">
-            <option value="https://www.google.com/search?q=" selected>Google</option>
-            <option value="https://www.bing.com/search?q=">Bing</option>
-            <option value="https://duckduckgo.com/?q=">DuckDuckGo</option>
-        </select>
+    <div class="search-engine-switcher" onclick="switchSearchEngine()">
+        <img class="search-engine-logo" src="https://www.google.com/favicon.ico" alt="Google Logo">
+        <span class="search-engine-name">Google</span>
     </div>
 
     <script>
+        const searchEngines = [
+            { name: "Google", logo: "https://www.google.com/favicon.ico" },
+            { name: "Bing", logo: "https://www.bing.com/favicon.ico" },
+            { name: "DuckDuckGo", logo: "https://duckduckgo.com/favicon.ico" }
+        ];
+        let currentSearchEngineIndex = 0;
+
         function search() {
             var query = document.getElementById("searchInput").value;
             if (query.trim() !== "") {
-                var selectedEngine = document.getElementById("searchEngine").value;
-                window.open(selectedEngine + encodeURIComponent(query), "_blank");
+                var selectedEngine = searchEngines[currentSearchEngineIndex].logo;
+                window.open("https://www.google.com/search?q=" + encodeURIComponent(query), "_blank");
             }
         }
 
-        function changeSearchEngine() {
-            var selectedEngine = document.getElementById("searchEngine").value;
-            // You can customize this function to perform additional actions when changing search engines
+        function switchSearchEngine() {
+            currentSearchEngineIndex = (currentSearchEngineIndex + 1) % searchEngines.length;
+            document.querySelector('.search-engine-logo').src = searchEngines[currentSearchEngineIndex].logo;
+            document.querySelector('.search-engine-name').innerText = searchEngines[currentSearchEngineIndex].name;
         }
     </script>
 </body>
