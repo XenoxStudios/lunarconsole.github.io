@@ -11,86 +11,84 @@
             padding: 0;
             background-color: #f8f8f8;
         }
-        .container {
-            max-width: 800px;
-            margin: 50px auto;
-            text-align: center;
+        .search-container {
+            background-color: #0078D4;
             padding: 20px;
+            border-bottom-left-radius: 10px;
+            border-bottom-right-radius: 10px;
+            text-align: center;
+        }
+        .search-bar {
+            margin-top: 20px;
+            margin-bottom: 20px;
+            padding: 15px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            width: calc(100% - 40px);
+            max-width: 800px;
+            box-sizing: border-box;
+            font-size: 18px;
+        }
+        .search-button {
+            padding: 15px 30px;
+            background-color: #005a9e;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            font-size: 18px;
+        }
+        .search-button:hover {
+            background-color: #004d88;
+        }
+        .shortcut-container {
             background-color: #fff;
-            border-radius: 10px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            border-top: 10px solid #0078D4;
+            padding: 20px;
+            border-top-left-radius: 10px;
+            border-top-right-radius: 10px;
+            text-align: center;
         }
         .shortcut {
             display: inline-block;
             margin: 10px;
-            padding: 20px;
-            background-color: #0078D4;
+            padding: 10px;
+            background-color: #f8f8f8;
             border-radius: 10px;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
             text-decoration: none;
-            color: #fff;
+            color: #333;
             transition: all 0.3s ease;
         }
         .shortcut:hover {
-            background-color: #005a9e;
+            background-color: #f0f0f0;
         }
         .shortcut img {
             width: 32px;
             height: 32px;
             margin-bottom: 10px;
         }
-        .search-bar {
-            margin-top: 20px;
-            margin-bottom: 20px;
-            padding: 10px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            width: calc(100% - 40px);
-            max-width: 600px;
-            box-sizing: border-box;
-        }
-        .search-button {
-            padding: 10px 20px;
-            background-color: #0078D4;
-            color: #fff;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            transition: background-color 0.3s ease;
-        }
-        .search-button:hover {
-            background-color: #005a9e;
-        }
-        .title {
-            font-size: 28px;
-            font-weight: bold;
-            margin-bottom: 20px;
-            color: #0078D4;
-        }
     </style>
 </head>
 <body>
-    <div class="container">
-        <div class="title">Start Page</div>
+    <div class="search-container">
         <input type="text" id="searchInput" class="search-bar" placeholder="Search the web...">
-        <button onclick="searchGoogle()" class="search-button">Search</button>
         <br><br>
+        <button onclick="searchGoogle()" class="search-button">Search</button>
+    </div>
+
+    <div class="shortcut-container">
         <a href="https://github.com" class="shortcut" target="_blank">
             <img src="https://github.com/favicon.ico" alt="GitHub Favicon">
-            GitHub
         </a>
         <a href="https://www.cloudflare.com" class="shortcut" target="_blank">
             <img src="https://www.cloudflare.com/favicon.ico" alt="Cloudflare Favicon">
-            Cloudflare
         </a>
         <a href="https://www.openai.com/chatgpt" class="shortcut" target="_blank">
             <img src="https://www.openai.com/favicon.ico" alt="OpenAI Favicon">
-            ChatGPT
         </a>
         <a href="https://www.spotify.com" class="shortcut" target="_blank">
             <img src="https://www.spotify.com/favicon.ico" alt="Spotify Favicon">
-            Spotify
         </a>
     </div>
 
