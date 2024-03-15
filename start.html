@@ -18,6 +18,7 @@
             align-items: center;
             justify-content: center;
             min-height: 100vh;
+            position: relative;
         }
         .content {
             position: relative;
@@ -95,6 +96,24 @@
             font-size: 14px;
             z-index: 1;
         }
+        .custom-menu {
+            position: absolute;
+            width: 150px;
+            background: #f9f9f9;
+            padding: 10px;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            display: none;
+        }
+        .custom-menu-option {
+            padding: 8px 15px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        .custom-menu-option:hover {
+            background-color: #ddd;
+        }
     </style>
 </head>
 <body>
@@ -122,13 +141,27 @@
         <span class="search-engine-name">Google</span>
     </div>
 
+    <div class="custom-menu" id="customMenu">
+        <div class="custom-menu-option" onclick="noOptions()">No options</div>
+    </div>
+
     <script>
-        const searchEngines = [
-            { name: "Google", logo: "https://www.google.com/favicon.ico" },
-            { name: "Bing", logo: "https://www.bing.com/favicon.ico" },
-            { name: "DuckDuckGo", logo: "https://duckduckgo.com/favicon.ico" }
-        ];
-        let currentSearchEngineIndex = 0;
+        window.addEventListener('contextmenu', function (e) {
+            e.preventDefault();
+            var customMenu = document.getElementById('customMenu');
+            customMenu.style.left = e.pageX + 'px';
+            customMenu.style.top = e.pageY + 'px';
+            customMenu.style.display = 'block';
+        });
+
+        window.addEventListener('click', function () {
+            var customMenu = document.getElementById('customMenu');
+            customMenu.style.display = 'none';
+        });
+
+        function noOptions() {
+            alert("No options");
+        }
 
         function search() {
             var query = document.getElementById("searchInput").value;
