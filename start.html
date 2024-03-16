@@ -138,7 +138,7 @@
         </a>
     </div>
 
-    <div class="search-engine-switcher" oncontextmenu="showCustomMenu(event)">
+    <div class="search-engine-switcher" onclick="switchSearchEngine()">
         <img class="search-engine-logo" src="https://www.google.com/favicon.ico" alt="Google Logo">
         <span class="search-engine-name">Google</span>
         <div class="custom-menu">
@@ -169,14 +169,6 @@
             document.querySelector('.search-engine-name').innerText = searchEngines[currentSearchEngineIndex].name;
         }
 
-        function showCustomMenu(event) {
-            event.preventDefault();
-            const menu = document.querySelector('.custom-menu');
-            menu.style.top = `${event.clientY}px`;
-            menu.style.left = `${event.clientX}px`;
-            menu.style.display = 'block';
-        }
-
         function copyText() {
             document.execCommand("copy");
             hideCustomMenu();
@@ -191,12 +183,6 @@
             const menu = document.querySelector('.custom-menu');
             menu.style.display = 'none';
         }
-
-        document.addEventListener("click", function(event) {
-            if (!event.target.closest('.search-engine-switcher')) {
-                hideCustomMenu();
-            }
-        });
     </script>
 </body>
 </html>
